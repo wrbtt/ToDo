@@ -1,0 +1,3 @@
+/home/bogdans/ToDo/build/CMakeFiles/my_todo.dir
+/home/bogdans/ToDo/build/CMakeFiles/edit_cache.dir
+/home/bogdans/ToDo/build/CMakeFiles/rebuild_cache.dir
