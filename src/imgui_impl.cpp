@@ -63,7 +63,7 @@ void create_ui(ToDoList& todo) {
         if (ImGui::Button("Submit Task")) {
             todo.addTask(nextId++, taskBuffer);
             taskBuffer[0] = '\0';
-            showInput = false; // скрываем поле после добавления
+            showInput = false; 
         }
         ImGui::SameLine();
         if (ImGui::Button("Cancel")) showInput = false; 
@@ -71,7 +71,7 @@ void create_ui(ToDoList& todo) {
         ImGui::Separator();
     }
 
-    // Кнопки удалить->подтвердить удаление
+    // Remove Task
     static bool showInputId = false;
     static unsigned int removeId;
 
@@ -89,7 +89,7 @@ void create_ui(ToDoList& todo) {
 
    
     ImGui::Separator();
-    // Вывод задач
+    
     for(const auto& t : todo.getTask()) {
         ImGui::Text("%d -> %s", t.IdTask, t.textTask.c_str());
     }
@@ -148,7 +148,7 @@ int main() {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        // Твоё окно
+        
         create_ui(todo);
 
         ImGui::Render();
