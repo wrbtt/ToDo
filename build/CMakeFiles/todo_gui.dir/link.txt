@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o CMakeFiles/todo_gui.dir/src/ToDo.cpp.o -o todo_gui  /home/bogdans/vcpkg/installed/x64-linux/lib/libimgui.a /home/bogdans/vcpkg/installed/x64-linux/debug/lib/libglfw3.a /usr/lib/x86_64-linux-gnu/libGL.so -ldl -lpthread /usr/lib/x86_64-linux-gnu/librt.a -lm -ldl 

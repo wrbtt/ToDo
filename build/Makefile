@@ -117,24 +117,88 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named my_todo
+# Target rules for targets named todo_console
 
 # Build rule for target.
-my_todo: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_todo
-.PHONY : my_todo
+todo_console: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 todo_console
+.PHONY : todo_console
 
 # fast build rule for target.
-my_todo/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_todo.dir/build.make CMakeFiles/my_todo.dir/build
-.PHONY : my_todo/fast
+todo_console/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/build
+.PHONY : todo_console/fast
+
+#=============================================================================
+# Target rules for targets named todo_gui
+
+# Build rule for target.
+todo_gui: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 todo_gui
+.PHONY : todo_gui
+
+# fast build rule for target.
+todo_gui/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/build
+.PHONY : todo_gui/fast
+
+src/ToDo.o: src/ToDo.cpp.o
+.PHONY : src/ToDo.o
+
+# target to build an object file
+src/ToDo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/ToDo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/ToDo.cpp.o
+.PHONY : src/ToDo.cpp.o
+
+src/ToDo.i: src/ToDo.cpp.i
+.PHONY : src/ToDo.i
+
+# target to preprocess a source file
+src/ToDo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/ToDo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/ToDo.cpp.i
+.PHONY : src/ToDo.cpp.i
+
+src/ToDo.s: src/ToDo.cpp.s
+.PHONY : src/ToDo.s
+
+# target to generate assembly for a file
+src/ToDo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/ToDo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/ToDo.cpp.s
+.PHONY : src/ToDo.cpp.s
+
+src/imgui_impl.o: src/imgui_impl.cpp.o
+.PHONY : src/imgui_impl.o
+
+# target to build an object file
+src/imgui_impl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o
+.PHONY : src/imgui_impl.cpp.o
+
+src/imgui_impl.i: src/imgui_impl.cpp.i
+.PHONY : src/imgui_impl.i
+
+# target to preprocess a source file
+src/imgui_impl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.i
+.PHONY : src/imgui_impl.cpp.i
+
+src/imgui_impl.s: src/imgui_impl.cpp.s
+.PHONY : src/imgui_impl.s
+
+# target to generate assembly for a file
+src/imgui_impl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_gui.dir/build.make CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.s
+.PHONY : src/imgui_impl.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_todo.dir/build.make CMakeFiles/my_todo.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -142,7 +206,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_todo.dir/build.make CMakeFiles/my_todo.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -150,7 +214,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_todo.dir/build.make CMakeFiles/my_todo.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/todo_console.dir/build.make CMakeFiles/todo_console.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -161,7 +225,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... my_todo"
+	@echo "... todo_console"
+	@echo "... todo_gui"
+	@echo "... src/ToDo.o"
+	@echo "... src/ToDo.i"
+	@echo "... src/ToDo.s"
+	@echo "... src/imgui_impl.o"
+	@echo "... src/imgui_impl.i"
+	@echo "... src/imgui_impl.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/todo_console.dir/src/ToDo.cpp.o CMakeFiles/todo_console.dir/src/main.cpp.o -o todo_console 
