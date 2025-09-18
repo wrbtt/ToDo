@@ -28,23 +28,15 @@ void ToDoList :: RemoveTask(unsigned int id) {
             << endl;
 }
 
-void ToDoList :: UpdateTask() {
-    cout << "Input task id: ";
-    int id;
-    cin >> id;
-    cin.ignore();
-
+void ToDoList :: UpdateTask(unsigned int id, const string& newText) {
+    
     auto findTask = find_if(task.begin(), task.end(), [id](const Task& t)
     {
         return t.IdTask == id;
     });
     
     if (findTask != task.end()) {
-        cout << "Input task text: ";
-        string inputNewText;
-        getline(cin, inputNewText);
-
-        findTask->textTask = inputNewText;
+        findTask->textTask = newText;
         cout << "Task updated!" << endl;
     } 
     else {

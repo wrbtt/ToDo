@@ -19,7 +19,6 @@ class ToDoList {
         void addTask(unsigned int id, const string& text);
         void PrintTask();
         void RemoveTask(unsigned int id);
-        void UpdateTask();
+        void UpdateTask(unsigned int id, const string& newTask);
         const vector<Task>& getTask() const;
 };
-

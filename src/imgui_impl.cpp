@@ -24,80 +24,151 @@ void init_imgui(GLFWwindow* window) {
 
 void create_ui(ToDoList& todo) {
     static bool darkTheme = false;
-    ImVec4 bgColor = darkTheme ? ImVec4(0.1f, 0.1f, 0.1f, 0.1f)
-                                : ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+    static char taskBuffer[128] = "";
+    static char updateTaskBuffer[128] = "";
+    static unsigned int updateId = 0;
+    static unsigned int removeId = 0;
+    static int nextId = 1;
+    static bool showInput = false;
+    static bool showInputUpdate = false;
+    static bool showInputId = false;
 
-    ImVec4 textColor = darkTheme ? ImVec4(1.0f, 1.0f, 1.0f, 1.0f)
-                                : ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
-    
+    // Цветовые настройки
+    ImVec4 bgColor = darkTheme ? ImVec4(0.1f, 0.1f, 0.1f, 1.0f) : ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
+    ImVec4 textColor = darkTheme ? ImVec4(1.0f, 1.0f, 1.0f, 1.0f) : ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 
-    ImGui::SetNextWindowPos(ImVec2(0,0));
+    // Настройка окна
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
 
     ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar |
-                                    ImGuiWindowFlags_NoResize | 
-                                    ImGuiWindowFlags_NoMove |
-                                    ImGuiWindowFlags_NoCollapse |
-                                    ImGuiWindowFlags_NoScrollbar |
-                                    ImGuiWindowFlags_NoScrollWithMouse;
+                                   ImGuiWindowFlags_NoResize |
+                                   ImGuiWindowFlags_NoMove |
+                                   ImGuiWindowFlags_NoCollapse |
+                                   ImGuiWindowFlags_NoScrollbar |
+                                   ImGuiWindowFlags_NoScrollWithMouse;
 
-
+    // Стили
     ImGui::PushStyleColor(ImGuiCol_WindowBg, bgColor);
     ImGui::PushStyleColor(ImGuiCol_Text, textColor);
-    ImGui::Begin("ToDoList", nullptr, window_flags);
-
-    // Theme 
-    if (ImGui::Button("Toggle Theme")) darkTheme = !darkTheme; 
-        ImGui::Separator();
-
-    // Add Task
-    static bool showInput = false;
-    static char taskBuffer[128] = "";
-    static int nextId = 1;
-
-    if (ImGui::Button("Add Task")) showInput = true; 
-
-        
-    if (showInput) {
-        ImGui::InputText("New Task", taskBuffer, sizeof(taskBuffer));
-        if (ImGui::Button("Submit Task")) {
-            todo.addTask(nextId++, taskBuffer);
-            taskBuffer[0] = '\0';
-            showInput = false; 
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Cancel")) showInput = false; 
-        
-        ImGui::Separator();
-    }
-
-    // Remove Task
-    static bool showInputId = false;
-    static unsigned int removeId;
-
-    if (ImGui::Button ("Remove Task")) showInputId = true; 
-
-
-    if (showInputId) {
-        ImGui::InputScalar("Task ID to remove", ImGuiDataType_U32, &removeId);
-        if (ImGui::Button("Submit Remove")) todo.RemoveTask(removeId); 
-        ImGui::SameLine();
-        if (ImGui::Button("Cancel")) showInputId = false;
-        
-        ImGui::Separator();
-        }
-
-   
-    ImGui::Separator();
     
-    for(const auto& t : todo.getTask()) {
-        ImGui::Text("%d -> %s", t.IdTask, t.textTask.c_str());
+    // Основное окно
+    if (ImGui::Begin("ToDoList", nullptr, window_flags)) {
+        // Переключение темы
+        if (ImGui::Button(darkTheme ? "Switch to Light Theme" : "Switch to Dark Theme")) {
+            darkTheme = !darkTheme;
+        }
+        ImGui::Separator();
+
+        // Добавление задачи
+        if (ImGui::Button("Add Task")) {
+            showInput = true;
+            showInputUpdate = false;
+            showInputId = false;
+            taskBuffer[0] = '\0'; 
+        }
+
+        if (showInput) {
+            ImGui::Text("Add New Task:");
+            ImGui::InputText("##NewTask", taskBuffer, sizeof(taskBuffer));
+            
+            ImGui::BeginGroup();
+            if (ImGui::Button("Submit", ImVec2(100, 0))) {
+                if (strlen(taskBuffer) > 0) {
+                    todo.addTask(nextId++, taskBuffer);
+                    taskBuffer[0] = '\0';
+                    showInput = false;
+                }
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel", ImVec2(100, 0))) {
+                showInput = false;
+                taskBuffer[0] = '\0';
+            }
+            ImGui::EndGroup();
+            ImGui::Separator();
+        }
+
+        // Обновление задачи
+        if (ImGui::Button("Update Task")) {
+            showInputUpdate = true;
+            showInput = false;
+            showInputId = false;
+            updateTaskBuffer[0] = '\0';
+            updateId = 0;
+        }
+
+        if (showInputUpdate) {
+            ImGui::Text("Update Task:");
+            ImGui::InputScalar("Task ID##Update", ImGuiDataType_U32, &updateId);
+            ImGui::InputText("New Task Text##Update", updateTaskBuffer, sizeof(updateTaskBuffer));
+            
+            ImGui::BeginGroup();
+            if (ImGui::Button("Submit Update", ImVec2(120, 0))) {
+                if (updateId > 0 && strlen(updateTaskBuffer) > 0) {
+                    todo.UpdateTask(updateId, updateTaskBuffer);
+                    updateTaskBuffer[0] = '\0';
+                    updateId = 0;
+                    showInputUpdate = false;
+                }
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel", ImVec2(100, 0))) {
+                showInputUpdate = false;
+                updateTaskBuffer[0] = '\0';
+                updateId = 0;
+            }
+            ImGui::EndGroup();
+            ImGui::Separator();
+        }
+
+        // Удаление задачи
+        if (ImGui::Button("Remove Task")) {
+            showInputId = true;
+            showInput = false;
+            showInputUpdate = false;
+            removeId = 0;
+        }
+
+        if (showInputId) {
+            ImGui::Text("Remove Task:");
+            ImGui::InputScalar("Task ID##Remove", ImGuiDataType_U32, &removeId);
+            
+            ImGui::BeginGroup();
+            if (ImGui::Button("Remove", ImVec2(100, 0))) {
+                if (removeId > 0) {
+                    todo.RemoveTask(removeId);
+                    removeId = 0;
+                    showInputId = false;
+                }
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Cancel", ImVec2(100, 0))) {
+                showInputId = false;
+                removeId = 0;
+            }
+            ImGui::EndGroup();
+            ImGui::Separator();
+        }
+
+        // Отображение списка задач
+        ImGui::Spacing();
+        ImGui::Text("Tasks List:");
+        ImGui::Separator();
+        
+        const auto& tasks = todo.getTask();
+        if (tasks.empty()) {
+            ImGui::Text("No tasks available.");
+        } else {
+            for (const auto& t : tasks) {
+                ImGui::Text("%d. %s", t.IdTask, t.textTask.c_str());
+            }
+        }
     }
-
     ImGui::End();
-    ImGui::PopStyleColor(2);
-    }   
 
+    ImGui::PopStyleColor(2);
+}
 
 void render_frame(ToDoList& todo) {
     ImGui_ImplOpenGL3_NewFrame();
