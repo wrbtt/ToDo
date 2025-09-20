@@ -136,7 +136,11 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: \
  /usr/include/c++/11/bits/stl_uninitialized.h \
  /usr/include/c++/11/bits/stl_vector.h \
  /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/queue \
+ /usr/include/c++/11/deque /usr/include/c++/11/bits/stl_deque.h \
+ /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_heap.h \
+ /usr/include/c++/11/bits/stl_queue.h \
+ /usr/include/c++/11/bits/uses_allocator.h \
  /home/bogdans/vcpkg/installed/x64-linux/include/GLFW/glfw3.h \
  /usr/include/GL/gl.h \
  /home/bogdans/vcpkg/installed/x64-linux/include/GL/glext.h \

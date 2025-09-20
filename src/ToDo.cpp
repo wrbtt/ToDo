@@ -3,26 +3,37 @@
 #include <algorithm>
 using namespace std;
 
-void ToDoList :: addTask(unsigned int id, const string& text) {
-    task.emplace_back(id, text);
-}
+unsigned int ToDoList :: addTask(unsigned int id, const string& text) {
+   unsigned int newId;
+    if (!freeIds.empty()) {
+        newId = freeIds.front();
+        freeIds.pop();
+    } 
+    else {
+        newId = nextId++;
+    }
+    tasks.push_back(Task{newId, text});
+    return newId;
+} 
 
 const vector<Task>& ToDoList :: getTask() const {
-    return task;
+    return tasks;
 }
 
 void ToDoList :: PrintTask() {
-    for(const auto& it : task) {
+    for(const auto& it : tasks) {
         cout << it.IdTask << " -> " << it.textTask << endl;
     }
 }
 
 void ToDoList :: RemoveTask(unsigned int id) {
-   auto removeTask = find_if(task.begin(), task.end(),
+   auto removeTask = find_if(tasks.begin(), tasks.end(),
         [id](const Task& t) {return t.IdTask == id; });
     
-    if (removeTask != task.end())
-        task.erase(removeTask);
+    if (removeTask != tasks.end()) {
+        freeIds.push(removeTask->IdTask);
+        tasks.erase(removeTask);
+    }
     else 
         cerr << "Error: There is no task for the specified ID!"
             << endl;
@@ -30,14 +41,13 @@ void ToDoList :: RemoveTask(unsigned int id) {
 
 void ToDoList :: UpdateTask(unsigned int id, const string& newText) {
     
-    auto findTask = find_if(task.begin(), task.end(), [id](const Task& t)
+    auto taskIt = find_if(tasks.begin(), tasks.end(), [id](const Task& t)
     {
         return t.IdTask == id;
     });
     
-    if (findTask != task.end()) {
-        findTask->textTask = newText;
-        cout << "Task updated!" << endl;
+    if (taskIt != tasks.end()) {
+        taskIt->textTask = newText;
     } 
     else {
         cout << "Task with id: " << id << " not found." << endl;

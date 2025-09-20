@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -13,10 +14,13 @@ struct Task {
 };
 
 class ToDoList {
-    vector<Task> task;
+    vector<Task> tasks;
+    queue<unsigned int> freeIds;
+    unsigned int nextId = 1;
+
 
     public: 
-        void addTask(unsigned int id, const string& text);
+        unsigned int addTask(unsigned int id, const string& text);
         void PrintTask();
         void RemoveTask(unsigned int id);
         void UpdateTask(unsigned int id, const string& newTask);
