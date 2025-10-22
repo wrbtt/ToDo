@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/my_todo.dir/src/main.cpp.o -o my_todo 

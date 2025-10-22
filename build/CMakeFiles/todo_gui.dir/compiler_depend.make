@@ -158,6 +158,13 @@ CMakeFiles/todo_gui.dir/src/ToDo.cpp.o: ../src/ToDo.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_queue.h \
+  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
@@ -192,14 +199,12 @@ CMakeFiles/todo_gui.dir/src/ToDo.cpp.o: ../src/ToDo.cpp \
   /usr/include/c++/11/bits/stl_relops.h \
   /usr/include/c++/11/bits/stl_algo.h \
   /usr/include/c++/11/bits/algorithmfwd.h \
-  /usr/include/c++/11/bits/stl_heap.h \
   /usr/include/c++/11/bits/stl_tempbuf.h \
   /usr/include/c++/11/bits/uniform_int_dist.h \
   /usr/include/c++/11/pstl/glue_algorithm_defs.h \
   /usr/include/c++/11/functional \
   /usr/include/c++/11/tuple \
   /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/invoke.h \
   /usr/include/c++/11/bits/refwrap.h \
   /usr/include/c++/11/bits/std_function.h \
@@ -378,6 +383,13 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
+  /usr/include/c++/11/queue \
+  /usr/include/c++/11/deque \
+  /usr/include/c++/11/bits/stl_deque.h \
+  /usr/include/c++/11/bits/deque.tcc \
+  /usr/include/c++/11/bits/stl_heap.h \
+  /usr/include/c++/11/bits/stl_queue.h \
+  /usr/include/c++/11/bits/uses_allocator.h \
   /home/bogdans/vcpkg/installed/x64-linux/include/GLFW/glfw3.h \
   /usr/include/GL/gl.h \
   /home/bogdans/vcpkg/installed/x64-linux/include/GL/glext.h \
@@ -439,6 +451,16 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 
 /usr/include/c++/11/bits/invoke.h:
 
+/usr/include/c++/11/array:
+
+/usr/include/c++/11/tuple:
+
+/usr/include/c++/11/functional:
+
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
+
+/usr/include/c++/11/bits/uniform_int_dist.h:
+
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
@@ -447,13 +469,9 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
-/usr/include/c++/11/tuple:
-
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
-
-/usr/include/c++/11/functional:
 
 /usr/include/pthread.h:
 
@@ -464,10 +482,6 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 /usr/include/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
-
-/usr/include/c++/11/bits/uses_allocator.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/c++/11/iostream:
 
@@ -555,8 +569,6 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 
 /usr/include/c++/11/debug/debug.h:
 
-/usr/include/wchar.h:
-
 /usr/include/c++/11/bits/ostream.tcc:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h:
@@ -620,8 +632,6 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 /usr/include/c++/11/iosfwd:
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/c++/11/bits/uniform_int_dist.h:
 
 ../src/imgui_impl.cpp:
 
@@ -687,6 +697,10 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
+/usr/include/wchar.h:
+
+/usr/include/c++/11/bits/deque.tcc:
+
 /usr/include/c++/11/cwctype:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
@@ -726,6 +740,8 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/asm-generic/errno-base.h:
+
+/usr/include/c++/11/deque:
 
 /usr/include/c++/11/bits/nested_exception.h:
 
@@ -805,13 +821,15 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 
 /usr/include/asm-generic/errno.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+/usr/include/c++/11/queue:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
 
 /usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
 /usr/include/c++/11/bits/basic_string.tcc:
 
@@ -822,6 +840,14 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/11/bits/vector.tcc:
+
+/usr/include/c++/11/bits/stl_deque.h:
+
+/usr/include/c++/11/bits/stl_queue.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
+
+/usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/stdint.h:
 
@@ -856,7 +882,3 @@ CMakeFiles/todo_gui.dir/src/imgui_impl.cpp.o: ../src/imgui_impl.cpp \
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/c++/11/bits/algorithmfwd.h:
-
-/usr/include/c++/11/pstl/glue_algorithm_defs.h:
-
-/usr/include/c++/11/array:

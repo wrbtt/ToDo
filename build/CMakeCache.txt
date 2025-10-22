@@ -177,7 +177,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Path to a program.
 CMAKE_STRIP:FILEPATH=/usr/bin/strip
 
-CMAKE_TOOLCHAIN_FILE:STRING=/home/bogdans/vcpkg/scripts/buildsystems/vcpkg.cmake
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=/home/bogdans/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -275,9 +276,6 @@ _VCPKG_INSTALLED_DIR:PATH=/home/bogdans/vcpkg/installed
 
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=/home/bogdans/vcpkg/installed/x64-linux/share/glfw3
-
-//The directory containing a CMake configuration file for imgui.
-imgui_DIR:PATH=/home/bogdans/vcpkg/installed/x64-linux/share/imgui
 
 
 ########################
