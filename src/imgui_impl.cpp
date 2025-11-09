@@ -59,7 +59,7 @@ void create_ui(ToDoList& todo) {
             darkTheme = !darkTheme;
         }
         ImGui::Separator();
-
+        
         // Добавление задачи
         if (ImGui::Button("Add Task")) {
             showInput = true;

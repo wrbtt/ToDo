@@ -20,6 +20,8 @@ const vector<Task>& ToDoList :: getTask() const {
     return tasks;
 }
 
+
+// Метод для отладки(не используется в src/imgui_impl.cpp)
 void ToDoList :: PrintTask() {
     for(const auto& it : tasks) {
         cout << it.IdTask << " -> " << it.textTask << endl;
@@ -35,6 +37,7 @@ void ToDoList :: RemoveTask(unsigned int id) {
         tasks.erase(removeTask);
     }
     else 
+        // Вывод для отладки
         cerr << "Error: There is no task for the specified ID!"
             << endl;
 }
@@ -50,6 +53,7 @@ void ToDoList :: UpdateTask(unsigned int id, const string& newText) {
         taskIt->textTask = newText;
     } 
     else {
+        // Вывод для отладки
         cout << "Task with id: " << id << " not found." << endl;
     }
 }
