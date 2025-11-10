@@ -22,6 +22,13 @@ void init_imgui(GLFWwindow* window) {
     ImGui_ImplOpenGL3_CreateFontsTexture();
 }
 
+// Функция для окраски кнопок
+void ColorButton() {
+    ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor::HSV(0.08f, 0.9f, 0.9f));
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor::HSV(0.08f, 1.0f, 1.0f));
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, (ImVec4)ImColor::HSV(0.08f, 0.8f, 0.8f));
+}
+
 void create_ui(ToDoList& todo) {
     static bool darkTheme = false;
     static char taskBuffer[128] = "";
@@ -55,24 +62,35 @@ void create_ui(ToDoList& todo) {
     // Основное окно
     if (ImGui::Begin("ToDoList", nullptr, window_flags)) {
         // Переключение темы
+
+        ColorButton();
+
         if (ImGui::Button(darkTheme ? "Switch to Light Theme" : "Switch to Dark Theme")) {
             darkTheme = !darkTheme;
         }
+        ImGui::PopStyleColor(3);
         ImGui::Separator();
         
         // Добавление задачи
+
+        ColorButton();
+
         if (ImGui::Button("Add Task")) {
             showInput = true;
             showInputUpdate = false;
             showInputId = false;
             taskBuffer[0] = '\0'; 
         }
+        ImGui::PopStyleColor(3);
 
         if (showInput) {
             ImGui::Text("Add New Task:");
             ImGui::InputText("##NewTask", taskBuffer, sizeof(taskBuffer));
             
             ImGui::BeginGroup();
+
+            ColorButton();
+
             if (ImGui::Button("Submit", ImVec2(100, 0))) {
                 if (strlen(taskBuffer) > 0) {
                     todo.addTask(nextId++, taskBuffer);
@@ -80,16 +98,26 @@ void create_ui(ToDoList& todo) {
                     showInput = false;
                 }
             }
+            ImGui::PopStyleColor(3);
+
             ImGui::SameLine();
+
+            ColorButton();
+
             if (ImGui::Button("Cancel", ImVec2(100, 0))) {
                 showInput = false;
                 taskBuffer[0] = '\0';
             }
+            ImGui::PopStyleColor(3);
+
             ImGui::EndGroup();
             ImGui::Separator();
         }
 
         // Обновление задачи
+
+        ColorButton();
+
         if (ImGui::Button("Update Task")) {
             showInputUpdate = true;
             showInput = false;
@@ -98,12 +126,17 @@ void create_ui(ToDoList& todo) {
             updateId = 0;
         }
 
+        ImGui::PopStyleColor(3);
+
         if (showInputUpdate) {
             ImGui::Text("Update Task:");
             ImGui::InputScalar("Task ID##Update", ImGuiDataType_U32, &updateId);
             ImGui::InputText("New Task Text##Update", updateTaskBuffer, sizeof(updateTaskBuffer));
             
             ImGui::BeginGroup();
+
+            ColorButton();
+
             if (ImGui::Button("Submit Update", ImVec2(120, 0))) {
                 if (updateId > 0 && strlen(updateTaskBuffer) > 0) {
                     todo.UpdateTask(updateId, updateTaskBuffer);
@@ -112,17 +145,29 @@ void create_ui(ToDoList& todo) {
                     showInputUpdate = false;
                 }
             }
+
+            ImGui::PopStyleColor(3);
+
             ImGui::SameLine();
+
+            ColorButton();
+
             if (ImGui::Button("Cancel", ImVec2(100, 0))) {
                 showInputUpdate = false;
                 updateTaskBuffer[0] = '\0';
                 updateId = 0;
             }
+
+            ImGui::PopStyleColor(3);
+
             ImGui::EndGroup();
             ImGui::Separator();
         }
 
         // Удаление задачи
+
+        ColorButton();
+
         if (ImGui::Button("Remove Task")) {
             showInputId = true;
             showInput = false;
@@ -130,11 +175,16 @@ void create_ui(ToDoList& todo) {
             removeId = 0;
         }
 
+        ImGui::PopStyleColor(3);
+
         if (showInputId) {
             ImGui::Text("Remove Task:");
             ImGui::InputScalar("Task ID##Remove", ImGuiDataType_U32, &removeId);
             
             ImGui::BeginGroup();
+
+            ColorButton();
+
             if (ImGui::Button("Remove", ImVec2(100, 0))) {
                 if (removeId > 0) {
                     todo.RemoveTask(removeId);
@@ -142,11 +192,20 @@ void create_ui(ToDoList& todo) {
                     showInputId = false;
                 }
             }
+
+            ImGui::PopStyleColor(3);
+
             ImGui::SameLine();
+
+            ColorButton();
+
             if (ImGui::Button("Cancel", ImVec2(100, 0))) {
                 showInputId = false;
                 removeId = 0;
             }
+
+            ImGui::PopStyleColor(3);
+
             ImGui::EndGroup();
             ImGui::Separator();
         }
